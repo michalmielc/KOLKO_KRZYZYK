@@ -1,0 +1,22 @@
+AI.
+
+Ruch PC
+Ruch Gracza
+Ruch PC
+Ruch Gracza
+Ruch PC
+Ruch Gracza
+Ruch PC
+Ruch Gracza
+
+Ruch PC - czy wygrywa dla każdego pola
+Dla każdego RuchuPC czy wygrywa user - odetnij gałąź rozwiązania
+Ruch PC - czy wygrywa dla każdego pola
+Dla każdego RuchuPC czy wygrywa user - odetnij gałąź rozwiązania
+
+
+AI: 5
+US: 2
+
+AI: 1 3 4 6 7 8 9
+US:  
