@@ -170,7 +170,7 @@ function MinMax(isAiMove,boardMinMax,step)
    
     if (!isAiMove) {
 
-        // bestValue = maxValue; ????????????????????
+        bestValue = maxValue; 
    
         if (winningVariantsMinMax(boardMinMax)) {
             bestValue = minValue;
@@ -201,48 +201,53 @@ function valueMinMax(isAiMove,boardMinMax,step)
         }
     }
     
-
+    if (tabFreeFieldsMinMax.length==0)
+    {
+        bestValue = 0;
+    }
     
-    if (isAiMove) {
+    else 
+    { 
+        if (isAiMove) {
 
-        bestValue = minValue;
+            bestValue = minValue;
 
-        for (let i=0; i<tabFreeFieldsMinMax.length;i++) 
-        {
-     
-            boardMinMax[tabFreeFieldsMinMax[i]]=pcPlayer;
-            moveValue = MinMax (true,boardMinMax,step+1);
-            if (moveValue >= bestValue) {
-                bestValue = moveValue;
-            } 
-            boardMinMax[tabFreeFieldsMinMax[i]]="";   
+            for (let i=0; i<tabFreeFieldsMinMax.length;i++) 
+            {
+        
+                boardMinMax[tabFreeFieldsMinMax[i]]=pcPlayer;
+                moveValue = MinMax (true,boardMinMax,step+1);
+                if (moveValue >= bestValue) {
+                    bestValue = moveValue;
+                } 
+                boardMinMax[tabFreeFieldsMinMax[i]]="";   
+            }
+
+            bestValue=bestValue-step;
         }
 
-        bestValue=bestValue-step;
-    }
 
+        if (!isAiMove) {
 
-   if (!isAiMove) {
+                bestValue = maxValue;
 
-        bestValue = maxValue;
+                for (let i=0; i<tabFreeFieldsMinMax.length;i++) 
+                {
+                    boardMinMax[tabFreeFieldsMinMax[i]]=userPlayer;
+                    moveValue = MinMax (false,boardMinMax,step+1);
 
-        for (let i=0; i<tabFreeFieldsMinMax.length;i++) 
-        {
-            boardMinMax[tabFreeFieldsMinMax[i]]=userPlayer;
-            moveValue = MinMax (false,boardMinMax,step+1);
+                    if (moveValue <= bestValue) {
+                        bestValue = moveValue;
+                    } 
 
-            if (moveValue <= bestValue) {
-                bestValue = moveValue;
-            } 
+            
+                    boardMinMax[tabFreeFieldsMinMax[i]]="";   
+                }
 
-    
-            boardMinMax[tabFreeFieldsMinMax[i]]="";   
-        }
+                bestValue=bestValue+step;
+            }
 
-        bestValue=bestValue+step;
-    }
-
-   
+}
 	return bestValue;
 }	
 
